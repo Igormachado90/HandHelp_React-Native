@@ -13,7 +13,7 @@ const Email = ({navigation}) => {
                 />
             </View>
 
-            <Text style={styles.textTiliue}>qual seu email?</Text>
+            <Text style={styles.textTiliue}>Condição medica</Text>
             <TextInput
                 style={styles.Textinput}
                 placeholder="Digital e-mail"
@@ -21,7 +21,7 @@ const Email = ({navigation}) => {
 
             <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('Senha')}
+            onPress={() => navigation.navigate('Alergia')} // * essa preciso trocar import é pasta
             >
                 <Text style={styles.buttonText}>Continuar</Text>
             </TouchableOpacity>

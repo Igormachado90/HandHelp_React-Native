@@ -1,12 +1,7 @@
 import React from "react";
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "react-native";
-// import NavigationContainer from "@react-navigation/native";
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-
-// const Stack = createNativeStackNavigator();
-
-const Senha = () => {
+const Senha = ({navigation}) => {
     return (
         <View>
 
@@ -26,7 +21,7 @@ const Senha = () => {
 
             <TouchableOpacity
             style={styles.button}
-            // onPress={() => {navigation.navigate('')}}
+            onPress={() => {navigation.navigate('Sexo')}}
             >
                 <Text style={styles.buttonText}>Continuar</Text>
             </TouchableOpacity>
