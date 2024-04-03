@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "react-native";
+import { Picker } from '@react-native-picker/picker';
+// import { useSafeAreaFrame, useSafeAreaInsets, } from 'react-native-safe-area-context';
 
-const Email = ({navigation}) => {
+const Sangue = ({ navigation }) => {
+
+    const [sangueSelecionada, setSangueSelecionada] = useState('A+');
+    const pickerRef = useRef(null);
+
+    function open() {
+        pickerRef.current.focus();
+    }
+
+    function close() {
+        pickerRef.current.blur();
+    }
+
     return (
         <View>
 
@@ -14,18 +28,31 @@ const Email = ({navigation}) => {
             </View>
 
             <Text style={styles.textTiliue}>Tipo sanguineo</Text>
-            <TextInput
-                style={styles.Textinput}
-                placeholder="Digital e-mail"
-                keyboardType="email-address" />
+
+            <View style={styles.Textinput}>
+                <Picker
+                    ref={pickerRef}
+                    selectedValue={sangueSelecionada}
+                    onValueChange={(itemValue, itemIndex) => setSangueSelecionada(itemValue)}
+                    style={{ height: 50, width: 200 }}
+                >
+                    <Picker.Item label='A+' value="a+" />
+                    <Picker.Item label='A-' value="a-" />
+                    <Picker.Item label='B+' value="b+" />
+                    <Picker.Item label='B-' value="b-" />
+                    <Picker.Item label='AB+' value="ab+" />
+                    <Picker.Item label='AB-' value="ab-" />
+                    <Picker.Item label='O+' value="o+" />
+                    <Picker.Item label='O-' value="o-" />
+                </Picker>
+            </View>
 
             <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('AlturaEpeso')} // * essa preciso trocar import é pasta
+                style={styles.button}
+                onPress={() => navigation.navigate('AlturaEpeso')} // * essa preciso trocar import é pasta
             >
                 <Text style={styles.buttonText}>Continuar</Text>
             </TouchableOpacity>
-            
         </View>
     );
 }
@@ -50,35 +77,41 @@ const styles = StyleSheet.create({
         bottom: '10'
     },
     textTiliue: {
-        fontSize: 32,//*
-        paddingTop: 10,//!
-        color: "#0b8fac",//*
-        textAlign: "center",//*
-        fontStyle: "normal", //*
-        // fontWeight: "bold",
-        lineHeight: 38, // *
+        fontSize: 32,
+        paddingTop: 10,
+        color: "#0b8fac",
+        textAlign: "center",
+        fontStyle: "normal", 
+        fontWeight: "800",
+        lineHeight: 38, 
+        marginBottom: 35
     },
     Textinput: {
-        borderRadius: 8,
-        borderColor:"#0b8fac",
-        borderWidth:1,
-        height:40,
-        margin: 12,
-        paddingLeft: 10,
-        color:"#0b8fac"
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 27,
+        borderColor: "#0b8fac",
+        borderWidth: 1,
+        margin: 15,
+        padding: 13,
+        left: '5%',
+        height: 50,
+        width: 339,
     },
     button: {
         backgroundColor: '#0b8fac',
         paddingVertical: 10,
-        paddingLeft: '25%',
         borderRadius: 54,
         margin: 12,
+        width: 300,
+        height: 50,
+        left: '10%',
     },
     buttonText: {
-        marginLeft: '20%',
+        textAlign:'center',
         color: '#fff',
         fontSize: 18,
     },
 })
 
-export default Email;
+export default Sangue;

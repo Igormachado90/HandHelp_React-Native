@@ -50,32 +50,38 @@ const styles = StyleSheet.create({
         bottom: '10'
     },
     textTiliue: {
-        fontSize: 32,//*
-        paddingTop: 10,//!
-        color: "#0b8fac",//*
-        textAlign: "center",//*
-        fontStyle: "normal", //*
-        // fontWeight: "bold",
-        lineHeight: 38, // *
+        fontSize: 32,
+        paddingTop: 10,
+        color: "#0b8fac",
+        textAlign: "center",
+        fontStyle: "normal", 
+        fontWeight: "800",
+        lineHeight: 38, 
+        marginBottom: 35
     },
     Textinput: {
-        borderRadius: 8,
-        borderColor:"#0b8fac",
-        borderWidth:1,
-        height:40,
-        margin: 12,
-        paddingLeft: 10,
-        color:"#0b8fac"
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 27,
+        borderColor: "#0b8fac",
+        borderWidth: 1,
+        margin: 15,
+        padding: 13,
+        left: '5%',
+        height: 50,
+        width: 339,
     },
     button: {
         backgroundColor: '#0b8fac',
         paddingVertical: 10,
-        paddingLeft: '25%',
         borderRadius: 54,
         margin: 12,
+        width: 300,
+        height: 50,
+        left: '10%',
     },
     buttonText: {
-        marginLeft: '20%',
+        textAlign:'center',
         color: '#fff',
         fontSize: 18,
     },

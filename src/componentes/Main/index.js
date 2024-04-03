@@ -16,6 +16,8 @@ const Main = ({ navigation }) => {
 
             <View style={styles.div1}>
 
+            <Text style={styles.textTiliue}>Login ou Cadastro?</Text>
+
                 <TouchableOpacity 
                     onPress={() => navigation.navigate('Login')}
                     style={styles.button}>
@@ -55,26 +57,38 @@ const styles = StyleSheet.create({
     div1: {
         top: '10%'
     },
+    textTiliue: {
+        fontSize: 32,
+        paddingTop: 10,
+        color: "#0b8fac",
+        textAlign: "center",
+        fontStyle: "normal", 
+        fontWeight: "800",
+        lineHeight: 38, 
+        marginBottom: 35
+    },
     button: {
         backgroundColor: '#0b8fac',
         paddingVertical: 10,
-        paddingLeft: '25%',
         borderRadius: 54,
         margin: 12,
-        height: 52
+        width: 300,
+        height: 50,
+        left: '10%',
     },
     buttonblack: {
         backgroundColor: '#000',
         paddingVertical: 10,
-        paddingLeft: '25%',
         borderRadius: 54,
         margin: 12,
-        height: 52
+        width: 300,
+        height: 50,
+        left: '10%',
     },
     buttonText: {
         color: '#fff',
         fontSize: 18,
-        paddingLeft: '15%'
+        textAlign:'center',
     },
 })
 
