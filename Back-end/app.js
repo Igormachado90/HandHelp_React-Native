@@ -10,7 +10,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 
 sequelize.sync().then(() => {
-    console.log('Olá gabeil')
+    console.log('Olá HandHeld')
 });
 
 app.get('/', (request, response) => {
