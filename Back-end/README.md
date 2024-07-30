@@ -60,4 +60,4 @@ Este projeto demonstra como configurar e conectar a um banco de dados MySQL usan
 Para iniciar o projeto, execute:
 
 ```sh
-node db.js
+nodemon app.js
