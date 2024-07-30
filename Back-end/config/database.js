@@ -2,18 +2,13 @@ const { Sequelize } = require('sequelize');
 
 //* Configurações de conexão com banco de dados MySQL
 
-// const connection = new Sequelize('hand_banco_de_dados', 'root', 'igor12341234', {
-//   host: 'localhost',
-//   dialect: 'mysql',
-// });
-
 const connection = new Sequelize(
   {
   host: 'localhost',
-  dialect: 'mysql',
-  username: 'root',
+  dialect: 'mysql', // Tipo banco de dados que está sendo usado (MySQL)
+  username: 'root', 
   password: 'igor12341234', 
-  database: 'hand_banco_de_dados',
+  database: 'hand_banco_de_dados', 
   // logging: console.log, //! Pode definir como false para desativar o log ou console.log para ativar
   define: {
     timestamps: true,
