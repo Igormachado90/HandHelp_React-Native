@@ -12,7 +12,8 @@ const LoginScreen = ({ navigation }) => {
         try {
             // URL de servidor para login
             const loginUrl = 'http://192.168.0.7:8082/auth/login';
-                            // http://seu_servidor/login
+            // const loginUrl1 = 'http://localhost:8082/auth/login';
+                            
             const response = await axios.post(loginUrl, {
                 email,
                 password,
@@ -24,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
                 // await AsyncStorage.setItem('userToken', token);
                 
                 // Realize ações após o login bem-sucedido, como redirecionar para outra página
-                console.log('Login bem-sucedido:', response.data);
+                console.log('Login bem-sucedido:', response.data2);
                 navigation.navigate('Painel');
 
             } 
