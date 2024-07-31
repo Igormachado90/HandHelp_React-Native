@@ -2,10 +2,21 @@
 
 Este projeto demonstra como configurar e conectar a um banco de dados MySQL usando Sequelize no Node.js.
 
+## Tecnologias Utilizadas
+
+- Node.js
+- Express
+- Sequelize
+- MySQL
+- bcrypt (para hashing de senhas)
+- jsonwebtoken (para geração de tokens JWT)
+- nodemon (para reinicialização automática do servidor durante o desenvolvimento)
+
 ## Pré-requisitos
 
 - Node.js instalado
-- MySQL instalado e em execução
+- Nodemon instalado
+- Instalação do Sequelize e MySQL2
 - Um banco de dados MySQL criado
 
 ## Configuração
@@ -18,12 +29,26 @@ Este projeto demonstra como configurar e conectar a um banco de dados MySQL usan
 2. Instale as dependências:
     ```sh
     cd HAND-REACT_NATIVE
-    npm install
+    npm install ou npm i
     ```
 
-3. Configure o banco de dados:
+3. Instale o `nodemon` globalmente (opcional, se você preferir usar globalmente):
 
-    Certifique-se de que o MySQL esteja em execução e que você tenha um banco de dados chamado `hand_banco_de_dados`. Atualize o arquivo `db.js` (ou como você nomeou seu arquivo de configuração de banco de dados) com suas credenciais MySQL.
+    ```bash
+    npm install -g nodemon ou npm i -g nodemon
+    ```
+
+4. Instale o Sequelize e o `mysql2`:
+
+    Sequelize é uma ORM (Object-Relational Mapper) que facilita a interação com bancos de dados SQL, e o `mysql2` é o driver MySQL para Sequelize.
+
+    ```bash
+    npm install sequelize mysql2
+    ```
+
+5. Configure o banco de dados:
+
+    Crie banco de dados chamado `hand_banco_de_dados`.e ajuste as configurações no arquivo `config/database.js` (ou como você seu arquivo de configuração de banco de dados) com suas credenciais MySQL.
 
     ```js
     const { Sequelize } = require('sequelize');
@@ -55,9 +80,17 @@ Este projeto demonstra como configurar e conectar a um banco de dados MySQL usan
     module.exports = connection;
     ```
 
+### Estrutura do Projeto
+
+- `config/database.js`: Configurações do banco de dados.
+- `models/`: Contém os modelos Sequelize.
+  - `user.js`: Modelo de usuário.
+- `routes/auth.js`: Rotas para registro e login.
+- `app.js`: Configuração do servidor Express.
+
 ## Uso
 
 Para iniciar o projeto, execute:
 
 ```sh
-nodemon app.js
+npx nodemon app.js
