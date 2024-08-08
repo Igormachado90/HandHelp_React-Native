@@ -11,7 +11,7 @@ const AlturaEpeso = ({ navigation, route }) => {
     const handlNext = async () => {
 
         try {
-            const URL = 'http://192.168.0.7:8082/auth/register';
+            const URL = 'http://192.168.0.8:8082/auth/register';
 
             const dados = {
                 nome,
@@ -24,13 +24,17 @@ const AlturaEpeso = ({ navigation, route }) => {
                 altura,
                 peso
             };
-            const resposta = await axios.post(URL, dados);
+            const resp = await axios.post(URL, dados);
 
-            // Verificar a resposta do servidor
-            console.log('Resposta do servidor:', resposta.data);
-            // Lidar com a resposta do servidor
-            console.log('Dados enviados com sucesso:', resposta.data);
-            navigation.navigate('Painel', { nome, email, senha, idade, tipoSanguineo, altura, peso });
+                if (resp.data.message === 'Usuário registrado com sucesso!') {
+                    
+                                    // Verificar a resposta do servidor
+                                    console.log('Resposta do servidor:', resp.status);
+                                    // Lidar com a resposta do servidor
+                                    console.log('Dados enviados com sucesso:', resp.config.data);
+                                    navigation.navigate('Painel', { nome, email, senha, idade, tipoSanguineo, altura, peso });
+                    
+                }
         } catch (err) {
             // Lidar com erros
             console.error('Erro ao enviar dados para o servidor:', err);

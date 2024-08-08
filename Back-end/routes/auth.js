@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
   try {
     const { nome, email, senha, sexo, dob, idade, tipoSanguineo, altura, peso } = req.body;
     const hashedPassword = await bcrypt.hash(senha, 10);
-    const newUser = await User.create({ 
+    const newUser= await User.create({ 
       nome, 
       email, 
       senha: hashedPassword,
@@ -25,16 +25,13 @@ router.post('/register', async (req, res) => {
       altura,
       peso
     });
-    res.status(201).json({ message: 'Usuário registrado com sucesso!', newUser });
+    res.status(200).json({ message: 'Usuário registrado com sucesso!', newUser });
   } catch (error) {
     // console.log(error);
-    res.status(500).json({ message: 'Erro interno do servidor.' });
+    res.status(500).json({ AxiosError: 'Erro interno do servidor.' });
   }
 });
 
-// router.get('/api' , async (req, res) => {
-
-// })
 
 // Rota para longi de usuário
 router.post('/login', async (req, res) => {
