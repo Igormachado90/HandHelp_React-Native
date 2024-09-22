@@ -22,34 +22,36 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen'
 import PainelScreen from './src/screens/PainelScreen';
+import RotinaScreen from './src/screens/Rotina/Rotina';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={'Main'}>
-          <Stack.Screen name='Main' component={Main} />
-          {/* <Stack.Screen name='Login' component={LoginScreen} /> */}
-          <Stack.Screen name='Registro' component={RegisterScreen} />
-          <Stack.Screen name="Painel" component={PainelScreen} options={{ headerShown: false }} />
-          <Stack.Screen name='Login' component={Login} />
-          <Stack.Screen name='Nome' component={Nome} />
-          <Stack.Screen name='Email' component={Email} />
-          <Stack.Screen name="Senha" component={Senha} />
-          <Stack.Screen name="Sexo" component={Sexo} />
-          <Stack.Screen name="Sangue" component={Sangue} />
-          <Stack.Screen name="Alergia" component={Alergia} />
-          <Stack.Screen name="Idade" component={Idade} />
-          <Stack.Screen name="AlturaEpeso" component={AlturaEpeso} />
-          <Stack.Screen name="CondicaoMed" component={CondicaoMed} />
-          <Stack.Screen name="DataDeNasci" component={DataDeNasci} />
-          <Stack.Screen name="Diabete" component={Diabete} />
-          <Stack.Screen name="Fumante" component={Fumante} />
-          <Stack.Screen name="NotaMedica" component={NotaMedica} />
-          <Stack.Screen name="Pressao" component={Pressao} />
-        </Stack.Navigator>
-      </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={'Main'}>
+        <Stack.Screen name='Main' component={Main} />
+        {/* <Stack.Screen name='Login' component={LoginScreen} /> */}
+        <Stack.Screen name='Registro' component={RegisterScreen} />
+        <Stack.Screen name="Painel" component={PainelScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Nome' component={Nome} />
+        <Stack.Screen name='Email' component={Email} />
+        <Stack.Screen name="Senha" component={Senha} />
+        <Stack.Screen name="Sexo" component={Sexo} />
+        <Stack.Screen name="Sangue" component={Sangue} />
+        <Stack.Screen name="Alergia" component={Alergia} />
+        <Stack.Screen name="Idade" component={Idade} />
+        <Stack.Screen name="AlturaEpeso" component={AlturaEpeso} />
+        <Stack.Screen name="CondicaoMed" component={CondicaoMed} />
+        <Stack.Screen name="DataDeNasci" component={DataDeNasci} />
+        <Stack.Screen name="Diabete" component={Diabete} />
+        <Stack.Screen name="Fumante" component={Fumante} />
+        <Stack.Screen name="NotaMedica" component={NotaMedica} />
+        <Stack.Screen name="Pressao" component={Pressao} />
+        <Stack.Screen name="Rotina" component={RotinaScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

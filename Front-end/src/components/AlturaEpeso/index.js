@@ -11,7 +11,7 @@ const AlturaEpeso = ({ navigation, route }) => {
     const handlNext = async () => {
 
         try {
-            const URL = 'http://192.168.0.5:8082/auth/register';
+            const URL = 'http://192.168.0.8:8082/auth/register';
 
             const dados = {
                 nome,
