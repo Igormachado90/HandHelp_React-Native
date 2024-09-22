@@ -6,7 +6,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.circle}>
         <Image
-          source={{ uri: 'https://link-para-sua-imagem' }} // URL da sua imagem ou caminho local
+          source={require('../screens/Rotina/image/EmBreve.png')} // URL da sua imagem ou caminho local
           style={styles.image}
         />
       </View>

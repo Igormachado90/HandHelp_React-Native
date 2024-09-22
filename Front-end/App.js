@@ -23,6 +23,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen'
 import PainelScreen from './src/screens/PainelScreen';
 import RotinaScreen from './src/screens/Rotina/Rotina';
+import RotinaFim from './src/screens/Rotina/RotinaFim';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,8 @@ const App = () => {
         <Stack.Screen name="NotaMedica" component={NotaMedica} />
         <Stack.Screen name="Pressao" component={Pressao} />
         <Stack.Screen name="Rotina" component={RotinaScreen} />
+        <Stack.Screen name="RotinaFim" component={RotinaFim} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
