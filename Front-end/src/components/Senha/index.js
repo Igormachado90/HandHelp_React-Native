@@ -14,9 +14,9 @@ const Senha = ({navigation, route }) => {
       };
 
     return (
-        <View>
+        <View style={styles.container}>
 
-            <View style={styles.div}>
+            <View>
                 <View style={styles.BoxContainer}></View>
                 <Image
                     source={require("./img/EmBreve.png")}
@@ -24,7 +24,7 @@ const Senha = ({navigation, route }) => {
                 />
             </View>
 
-            <Text style={styles.textTiliue}>qual seu senha?</Text>
+            <Text style={styles.textTiliue}>Qual seu senha?</Text>
             <TextInput
                 style={styles.Textinput}
                 placeholder="Senha"
@@ -32,8 +32,8 @@ const Senha = ({navigation, route }) => {
                 onChangeText={setSenha}
                 secureTextEntry />
 
-            <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Continuar</Text>
+            <TouchableOpacity style={styles.continueButton} onPress={handleNext}>
+                <Text style={styles.continueButtonText}>Continuar</Text>
             </TouchableOpacity>
             
         </View>
@@ -41,6 +41,12 @@ const Senha = ({navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
     BoxContainer: {
         height: 330,
         width: 330,
@@ -56,42 +62,31 @@ const styles = StyleSheet.create({
         bottom: 120,
         position: "absolute",
     },
-    div: {
-        bottom: '10'
-    },
     textTiliue: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: '#0b8fac',
+        fontStyle: 'normal',
+        fontWeight: '800',
         fontSize: 32,
-        paddingTop: 10,
-        color: "#0b8fac",
-        textAlign: "center",
-        fontStyle: "normal", 
-        fontWeight: "800",
-        lineHeight: 38, 
-        marginBottom: 35
     },
     Textinput: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 27,
-        borderColor: "#0b8fac",
+        width: '80%',
+        padding: 10,
+        borderColor: '#0b8fac',
         borderWidth: 1,
-        margin: 15,
-        padding: 13,
-        left: '5%',
-        height: 50,
-        width: 339,
+        borderRadius: 30,
+        marginBottom: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    button: {
+    continueButton: {
         backgroundColor: '#0b8fac',
-        paddingVertical: 10,
+        paddingVertical: 15,
         borderRadius: 54,
-        margin: 12,
-        width: 300,
-        height: 50,
-        left: '10%',
+        paddingHorizontal: 120,
     },
-    buttonText: {
-        textAlign:'center',
+    continueButtonText: {
         color: '#fff',
         fontSize: 18,
     },

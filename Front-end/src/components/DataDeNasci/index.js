@@ -4,8 +4,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 // import { route } from "../../../../Back-end/routes/auth";
 
 const DataDeNasci = ({ navigation, route }) => {
-    const [dob, setDob] = useState(new Date());
-    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [date, setDate] = useState(new Date());
+    const [mostar, setMostar] = useState(false);
 
     const { nome, email, senha, sexo } = route.params;
 
@@ -14,25 +14,37 @@ const DataDeNasci = ({ navigation, route }) => {
         console.log('Email:', email);
         console.log('Senha:', senha);
         console.log('Sexo selecionado:', sexo);
-        console.log('Data de Nascimento:', dob);
+        console.log('Data de Nascimento:', date);
 
         // Convertendo a data para uma string no formato ISO
-        const dobString = dob.toISOString();
+        const dobString = date.toISOString();
 
-        navigation.navigate('Idade', { nome, email, senha, sexo, dob: dobString });
+        navigation.navigate('Idade', { nome, email, senha, sexo, date: dobString });
     };
 
     const onDateChange = (event, selectedDate) => {
-        const currentDate = selectedDate || dob;
-        const selectedDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-        setShowDatePicker(false);
-        setDob(selectedDateWithoutTime);
+        const currentDate = selectedDate || date;
+        // const selectedDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+        setMostar(false);
+        setDate(currentDate);
+    };
+
+    const showDatepicker = () => {
+        setMostar(true);
+    };
+
+    const formatDate = (date) => {
+        const months = [
+            'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+            'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+        ];
+        return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
     };
 
     return (
-        <View>
+        <View style={styles.container}>
 
-            <View style={styles.div}>
+            <View>
                 <View style={styles.BoxContainer}></View>
                 <Image
                     source={require("./img/EmBreve.png")}
@@ -40,24 +52,24 @@ const DataDeNasci = ({ navigation, route }) => {
                 />
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => setShowDatePicker(true)}>
-                <Text style={styles.buttonText}>Selecionar Data de Nascimento</Text>
+            <Text style={styles.label}>Data de Nascimento</Text>
+
+            <TouchableOpacity onPress={showDatepicker} style={styles.dateInput}>
+                <Text style={styles.dateText}>{formatDate(date)}</Text>
             </TouchableOpacity>
 
-            {showDatePicker && (
+            {mostar && (
                 <DateTimePicker
                     testID="datePicker"
-                    value={dob}
+                    value={date}
                     mode="date"
                     display="default"
                     onChange={onDateChange}
                 />
             )}
 
-            <Text>Data de Nascimento: {dob.toLocaleDateString()}</Text>
-
-            <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Continuar</Text>
+            <TouchableOpacity style={styles.continueButton} onPress={handleNext}>
+                <Text style={styles.continueButtonText}>Continuar</Text>
             </TouchableOpacity>
 
         </View>
@@ -65,6 +77,12 @@ const DataDeNasci = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
     BoxContainer: {
         height: 330,
         width: 330,
@@ -80,45 +98,38 @@ const styles = StyleSheet.create({
         bottom: 120,
         position: "absolute",
     },
-    div: {
-        bottom: '10'
-    },
-    textTiliue: {
+    label: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: '#0b8fac',
+        fontStyle: 'normal',
+        fontWeight: '800',
         fontSize: 32,
-        paddingTop: 10,
-        color: "#0b8fac",
-        textAlign: "center",
-        fontStyle: "normal",
-        fontWeight: "800",
-        lineHeight: 38,
-        marginBottom: 35
     },
-    Textinput: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 27,
-        borderColor: "#0b8fac",
+    dateText: {
+        fontSize: 16,
+    },
+    dateInput: {
+        width: '80%',
+        padding: 15,
+        borderColor: '#0b8fac',
         borderWidth: 1,
-        margin: 15,
-        padding: 13,
-        left: '5%',
-        height: 50,
-        width: 339,
+        borderRadius: 30,
+        marginBottom: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    button: {
+    continueButton: {
         backgroundColor: '#0b8fac',
-        paddingVertical: 10,
+        paddingVertical: 15,
         borderRadius: 54,
-        margin: 12,
-        width: 300,
-        height: 50,
-        left: '10%',
+        paddingHorizontal: 120,
     },
-    buttonText: {
-        textAlign: 'center',
+    continueButtonText: {
         color: '#fff',
         fontSize: 18,
     },
+
 })
 
 export default DataDeNasci;

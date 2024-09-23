@@ -42,7 +42,7 @@ const Login = ({navigation}) => {
     return (
         <View style={styles.Container}>
 
-            <View style={styles.BoxImag}>
+            <View>
                 <View style={styles.BoxContainer}></View>
                 <Image
                     source={require("./img/EmBreve.png")}
@@ -50,82 +50,37 @@ const Login = ({navigation}) => {
                 />
             </View>
 
-            <View style={styles.containerButtText}>
-
                 <Text style={styles.textTiliue}>Login</Text>
 
-                <TextInput style={styles.inputBorder}
+                <TextInput style={styles.Textinput}
                     value={email}
                     onChangeText={(text) => setEmail(text)}
                     placeholder="Digite seu email"
                     autoCapitalize="none"
                 />
 
-                <TextInput style={styles.inputBorder}
+                <TextInput style={styles.Textinput}
                     secureTextEntry
                     value={senha}
                     onChangeText={(text) => setSenha(text)}
                     placeholder="Digite sua senha"
                 />
 
-                <TouchableOpacity onPress={handleLogin} style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
+                <TouchableOpacity onPress={handleLogin} style={styles.continueButton}>
+                    <Text style={styles.continueButtonText}>Login</Text>
                 </TouchableOpacity>
 
-            </View>
+            
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     Container: {
-        top: '15%'
-    },
-    BoxImag: {
-        top: '5%',
-        left: '10%'
-    },
-    textTiliue: {
-        fontSize: 40,
-        paddingTop: 10,
-        color: "#0b8fac",
-        textAlign: "center",
-        fontStyle: "normal",
-        fontWeight: "800",
-        lineHeight: 38,
-        marginBottom: 20
-    },
-    inputBorder: {
-        alignItems: 'center',
+        flex: 1,
         justifyContent: 'center',
-        borderRadius: 27,
-        borderColor: "#0b8fac",
-        borderWidth: 1,
-        margin: 5,
-        padding: 13,
-        left: '8%',
-        height: 50,
-        width: 339,
-    },
-    button: {
-        backgroundColor: '#0b8fac',
-        padding: 13,
-        borderRadius: 27,
-        margin: 12,
         alignItems: 'center',
-        justifyContent: 'center',
-        left: '6%',
-        height: 50,
-        width: 340,
-        
-    },
-    buttonText: {
-        textAlign: 'center',
-        color: '#fff',
-        fontSize: 18,
-    },
-    containerButtText: {
-        bottom: '6%'
+        backgroundColor: '#fff',
     },
     BoxContainer: {
         height: 330,
@@ -142,8 +97,33 @@ const styles = StyleSheet.create({
         bottom: 120,
         position: "absolute",
     },
-    div: {
-        bottom: '10'
+    textTiliue: {
+        fontSize: 18,
+        marginBottom: 10,
+        color: '#0b8fac',
+        fontStyle: 'normal',
+        fontWeight: '800',
+        fontSize: 32,
+    },
+    Textinput: {
+        width: '80%',
+        padding: 8,
+        borderColor: '#0b8fac',
+        borderWidth: 1,
+        borderRadius: 30,
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    continueButton: {
+        backgroundColor: '#0b8fac',
+        paddingVertical: 10,
+        borderRadius: 54,
+        paddingHorizontal: 120,
+    },
+    continueButtonText: {
+        color: '#fff',
+        fontSize: 18,
     },
 })
 export default Login;

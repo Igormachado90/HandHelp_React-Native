@@ -4,10 +4,10 @@ import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "reac
 const Sexo = ({ navigation, route }) => {
     const [sexo, setSexo] = useState('');
 
-    const {nome, email, senha} = route.params;
+    const { nome, email, senha } = route.params;
 
-    const handleSelectSexo = (selectedSexo) => {
-        setSexo(selectedSexo);
+    const handleSelectSexo = (opcao) => {
+        setSexo(opcao);
     };
 
     const handleNext = () => {
@@ -20,9 +20,9 @@ const Sexo = ({ navigation, route }) => {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
 
-            <View style={styles.div}>
+            <View>
                 <View style={styles.BoxContainer}></View>
                 <Image
                     source={require("./img/EmBreve.png")}
@@ -30,32 +30,33 @@ const Sexo = ({ navigation, route }) => {
                 />
             </View>
 
-            <Text style={styles.textTiliue}>Selecione o sexo:</Text>
+            <Text style={styles.textTiliue}>Qual seu sexo:</Text>
 
             <View style={styles.Container}>
-                <View style={styles.selecao}>
+                
                     <TouchableOpacity style={styles.sexoItem} onPress={() => handleSelectSexo('M')}>
-                        <Image
-                            style={styles.vectorImg1}
+                        {/* <Image
                             source={require('./img/vectorHomem.png')}
-                        />
+                        /> */}
                         <Text>Homem</Text>
                     </TouchableOpacity>
-                </View>
-                <View style={styles.selecao}>
-                    <TouchableOpacity style={styles.sexoItem} onPress={() => handleSelectSexo('F')}>
-                    <Image
-                        style={styles.vectorImg}
-                        source={require('./img/mdi-gender-male.png')}
-                    />
-                    <Text>Mulher</Text>
+                
+                
+                    <TouchableOpacity style={[
+                        styles.sexoItem,
+                        sexo === 'mulher' && styles.selectedButton,
+                    ]} onPress={() => handleSelectSexo('F')}>
+                        {/* <Image
+                            source={require('./img/mdi-gender-male.png')}
+                        /> */}
+                        <Text>Mulher</Text>
                     </TouchableOpacity>
-                </View>
+                
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleNext} // * essa import preciso trocar é pasta
+            <TouchableOpacity style={styles.continueButton} onPress={handleNext} // * essa import preciso trocar é pasta
             >
-                <Text style={styles.buttonText}>Continuar</Text>
+                <Text style={styles.continueButtonText}>Continuar</Text>
             </TouchableOpacity>
 
         </View>
@@ -63,6 +64,12 @@ const Sexo = ({ navigation, route }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
     BoxContainer: {
         height: 330,
         width: 330,
@@ -78,9 +85,6 @@ const styles = StyleSheet.create({
         bottom: 120,
         position: "absolute",
     },
-    div: {
-        bottom: '10'
-    },
     textTiliue: {
         fontSize: 32,
         paddingTop: 10,
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "800",
         lineHeight: 38,
-        marginBottom: 35
+        marginBottom: 15
     },
     Container: {
         display: "flex",
@@ -97,39 +101,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    selecao: {
-        borderRadius: 8,
-        borderColor: "#0b8fac",
-        borderWidth: 1,
-        width: 80,
-        margin: 15,
-        padding: 13,
-        alignItems: 'center',
-        justifyContent: 'center',
-        // color: "#0b8fac"
+    // selecao: {
+    //     borderRadius: 8,
+    //     borderColor: "#0b8fac",
+    //     borderWidth: 1,
+    //     width: 80,
+    //     margin: 15,
+    //     padding: 13,
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     // color: "#0b8fac"
+    // },
+    sexoItem: {
+        padding: 20,
+        margin: 10,
+        backgroundColor: '#dfe4ea',
+        borderRadius: 10,
     },
-    button: {
+    selectedButton: {
+        backgroundColor: '#70a1ff',
+    },
+    continueButton: {
         backgroundColor: '#0b8fac',
-        paddingVertical: 10,
+        paddingVertical: 15,
         borderRadius: 54,
-        margin: 12,
-        width: 300,
-        height: 50,
-        left: '10%',
+        paddingHorizontal: 120,
     },
-    buttonText: {
-        textAlign: 'center',
+    continueButtonText: {
         color: '#fff',
         fontSize: 18,
     },
-    vectorImg: {
-        height: 44,
-        width: 44
-    },
-    vectorImg1: {
-        height: 33,
-        width: 22,
-    }
 })
 
 export default Sexo;
