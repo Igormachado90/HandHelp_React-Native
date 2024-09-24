@@ -13,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
 
       <Text style={styles.title}>Escolha um atendimento</Text>
 
-      <TouchableOpacity style={styles.buttonPrimary} onPress={() => navigation.navigate('Triagem')}>
+      <TouchableOpacity style={styles.buttonPrimary} onPress={() => navigation.navigate('LocalDor')}>
         <Text style={styles.buttonText}>Triagem</Text>
       </TouchableOpacity>
 

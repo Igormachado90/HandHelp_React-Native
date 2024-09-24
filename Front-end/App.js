@@ -24,6 +24,9 @@ import RegisterScreen from './src/screens/RegisterScreen'
 import PainelScreen from './src/screens/PainelScreen';
 import RotinaScreen from './src/screens/Rotina/Rotina';
 import RotinaFim from './src/screens/Rotina/RotinaFim';
+import LocalDorScreen  from './src/screens/Triagem/LocalDorScreen';
+import IntensidadeScreen from './src/screens/Triagem/IntensidadeScreen';
+import ComVozScreen from './src/screens/Triagem/ComVozScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,7 +55,9 @@ const App = () => {
         <Stack.Screen name="Pressao" component={Pressao} />
         <Stack.Screen name="Rotina" component={RotinaScreen} />
         <Stack.Screen name="RotinaFim" component={RotinaFim} />
-
+        <Stack.Screen name="LocalDor" component={LocalDorScreen} />
+        <Stack.Screen name="Intensidade" component={IntensidadeScreen} />
+        <Stack.Screen name="Voz" component={ComVozScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
