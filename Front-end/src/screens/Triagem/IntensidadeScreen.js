@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 
-const IntensidadeScreen = () => {
-  const [sliderValue, setSliderValue] = useState(0);
+const IntensidadeScreen = ({ route }) => {
+  const { localSelecionados } = route.params;
+  const [sliderValue, setSliderValue] = useState(50);
   const navigation = useNavigation();
 
   const getRatingText = (value) => {
@@ -13,6 +14,14 @@ const IntensidadeScreen = () => {
     if (value >= 40 && value < 60) return 'Normal';
     if (value >= 60 && value < 80) return 'Bom';
     return 'Muito Bom';
+  };
+  
+  const obterCor = (value) => {
+    if (value < 20) return '#9D2400'; 
+    if (value >= 20 && value < 40) return '#FF4F2A';
+    if (value >= 40 && value < 60) return '#FFC83F';
+    if (value >= 60 && value < 80) return '#BFFFE8'; 
+    return '#22EEB1';
   };
 
   return (
@@ -34,24 +43,24 @@ const IntensidadeScreen = () => {
           maximumValue={100}
           step={1}
           value={sliderValue}
-          onValueChange={setSliderValue}
-          minimumTrackTintColor="#1fb28a"
+          onValueChange={(value) => setSliderValue(value)}
+          minimumTrackTintColor={obterCor(sliderValue)}
           maximumTrackTintColor="#d3d3d3"
-          thumbTintColor="#1fb28a"
+          thumbTintColor={obterCor(sliderValue)}
         />
       </View>
 
       {/* Botão "Continua" */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Voz')} // Substitua 'ProximaTela' pelo nome correto da próxima tela
+        onPress={() => navigation.navigate('Voz',{localSelecionados, intensidade: getRatingText(sliderValue)})} // Substitua 'ProximaTela' pelo nome correto da próxima tela
       >
         <Text style={styles.buttonText}>Continua</Text>
       </TouchableOpacity>
 
       {/* Ícones de navegação no rodapé */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Painel')}>
           <Image
             source={{ uri: 'https://link-icone-home.png' }} // Substitua pelo link do ícone de casa
             style={styles.icon}

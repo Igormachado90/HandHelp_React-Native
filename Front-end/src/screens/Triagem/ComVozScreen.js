@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Tts from 'react-native-tts';
 
-const ComVozScreen = () => {
-  const [message, setMessage] = useState("I haven't been eating well lately, and I don't know why. My right foot also hurts so much, please help me, doc A!");
+const ComVozScreen = ({ route }) => {
+  const { localSelecionados, intensidade } = route.params;
   const navigation = useNavigation();
+
+  const textogerado = `Sintomas: ${localSelecionados.join(', ')}\n\nIntensidade: ${intensidade}`;
+
+  const falarTexto = async (texto) => {
+    try {
+      Tts.setDefaultLanguage('pt-BR');
+      Tts.setDefaultRate(1.0);
+      Tts.setDefaultPitch(1.0);
+      Tts.speak(texto);
+    } catch (error) {
+      console.log('Erro ao falar o texto:', error);
+
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -18,17 +33,13 @@ const ComVozScreen = () => {
 
       {/* Área de Texto para Mensagem */}
       <View style={styles.textAreaContainer}>
-        <TextInput
-          style={styles.textArea}
-          value={message}
-          onChangeText={(text) => setMessage(text)}
-          multiline={true}
-          numberOfLines={4}
-          editable={true}
-        />
-        <TouchableOpacity style={styles.voiceButton}>
+
+        <Text >{textogerado}</Text>
+
+        <TouchableOpacity style={styles.voiceButton} onPress={() => falarTexto(textogerado)}>
           <Text style={styles.voiceButtonText}>🎤 Aperte para Falar</Text>
         </TouchableOpacity>
+
       </View>
 
       {/* Botão "Continua" */}
