@@ -28,7 +28,7 @@ router.post('/register', async (req, res) => {
     res.status(200).json({ message: 'Usuário registrado com sucesso!', newUser });
   } catch (error) {
     // console.log(error);
-    res.status(500).json({ AxiosError: 'Erro interno do servidor.' });
+    res.status(500).json({ AxiosError: 'Erro interno do servidor.', error});
   }
 });
 

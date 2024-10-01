@@ -1,4 +1,4 @@
-import axios  from 'axios';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 // import api from '../services/api';
@@ -12,8 +12,7 @@ const LoginScreen = ({ navigation }) => {
         try {
             // URL de servidor para login
             const loginUrl = 'http://192.168.0.8:8082/auth/login';
-            // const loginUrl1 = 'http://localhost:8082/auth/login';
-                            
+
             const response = await axios.post(loginUrl, {
                 email,
                 password,
@@ -23,13 +22,13 @@ const LoginScreen = ({ navigation }) => {
                 // Armazene os dados do usuário (como um token de autenticação) em um armazenamento local (pode ser AsyncStorage)
                 // const token  = response.data.token;
                 // await AsyncStorage.setItem('userToken', token);
-                
+
                 // Realize ações após o login bem-sucedido, como redirecionar para outra página
-                console.log('Login bem-sucedido:', response.data2);
+                console.log('Login bem-sucedido:', response.data);
                 navigation.navigate('Painel');
 
-            } 
-            
+            }
+
             // const token = response.data.token
 
             // console.log('Token:', token);

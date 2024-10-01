@@ -47,7 +47,7 @@ const DataDeNasci = ({ navigation, route }) => {
             <View>
                 <View style={styles.BoxContainer}></View>
                 <Image
-                    source={require("./img/EmBreve.png")}
+                    source={require("../image/EmBreve.png")}
                     style={styles.imagem}
                 />
             </View>

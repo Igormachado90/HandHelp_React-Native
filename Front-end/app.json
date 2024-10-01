@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "hand-react-native",
+    "name": "HandHelp",
     "slug": "hand-react-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/MaoCor.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/TelaHand.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0B51AC"
     },
     "assetBundlePatterns": [
       "**/*"
