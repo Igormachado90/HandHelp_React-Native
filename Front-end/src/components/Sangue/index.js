@@ -7,9 +7,8 @@ const Sangue = ({ navigation, route }) => {
 
     const [tipoSanguineo, setTipoSanguineo] = useState('A+');
     const pickerRef = useRef(null);
-    const dobString = route.params && route.params.dob ? route.params.dob : '';
 
-    const {nome, email, senha, sexo, idade} = route.params;
+    const {nome, email, senha, sexo, idade, date} = route.params;
 
     const handleNext = () => {
         // Here you can send the data to the server, save locally, or perform other actions
@@ -17,11 +16,11 @@ const Sangue = ({ navigation, route }) => {
         console.log('Email:', email);
         console.log('Senha:', senha);
         console.log('Sexo selecionado:', sexo);
-        console.log('Data de Nascimento:', dobString);
+        console.log('Data de Nascimento:', date);
         console.log('Idade:', idade);
         console.log('Tipo Sanguíneo:', tipoSanguineo);
         // Navigate to the next screen or perform other actions
-        navigation.navigate('AlturaEpeso', {nome, email, senha, sexo, dob: dobString, idade, tipoSanguineo})
+        navigation.navigate('AlturaEpeso', {nome, email, senha, sexo, idade, date, tipoSanguineo})
     };
     
 

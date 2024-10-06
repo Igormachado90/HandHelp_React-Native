@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
+import { Video } from 'expo-av';
 
 const IntensidadeScreen = ({ route }) => {
   const { localSelecionados } = route.params;
   const [sliderValue, setSliderValue] = useState(50);
   const navigation = useNavigation();
+
 
   const getRatingText = (value) => {
     if (value < 20) return 'Muito Ruim';
@@ -15,22 +17,27 @@ const IntensidadeScreen = ({ route }) => {
     if (value >= 60 && value < 80) return 'Bom';
     return 'Muito Bom';
   };
-  
+
   const obterCor = (value) => {
-    if (value < 20) return '#9D2400'; 
+    if (value < 20) return '#9D2400';
     if (value >= 20 && value < 40) return '#FF4F2A';
     if (value >= 40 && value < 60) return '#FFC83F';
-    if (value >= 60 && value < 80) return '#BFFFE8'; 
+    if (value >= 60 && value < 80) return '#BFFFE8';
     return '#22EEB1';
   };
 
+  const video = require('./assets/videos/intensidade_da_dor.mp4');
+
   return (
     <View style={styles.container}>
-      {/* Parte superior com "Em breve!" */}
-      <View style={styles.topSection}>
-      <Image
-          source={require('../Rotina/image/EmBreve.png')} // Substitua pelo link da imagem correta
-          style={styles.image}
+      <View style={styles.circle}>
+        <Video
+          source={video}
+          style={styles.video} // Ajuste de estilo
+          resizeMode="contain"
+          shouldPlay={true}
+          isLooping={true}
+          onError={(error) => console.log('Error loading video:', error)}
         />
       </View>
 
@@ -53,7 +60,7 @@ const IntensidadeScreen = ({ route }) => {
       {/* Botão "Continua" */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Voz',{localSelecionados, intensidade: getRatingText(sliderValue)})} // Substitua 'ProximaTela' pelo nome correto da próxima tela
+        onPress={() => navigation.navigate('Voz', { localSelecionados, intensidade: getRatingText(sliderValue) })} // Substitua 'ProximaTela' pelo nome correto da próxima tela
       >
         <Text style={styles.buttonText}>Continua</Text>
       </TouchableOpacity>
@@ -85,9 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
   },
-  topSection: {
-    marginBottom: 30,
-  },
   circle: {
     width: 150,
     height: 150,
@@ -118,7 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b87ac',
     paddingVertical: 15,
     paddingHorizontal: 40,
-    borderRadius: 10,
+    borderRadius: 30,
     marginBottom: 20,
   },
   buttonText: {
@@ -136,6 +140,21 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginHorizontal: 40,
+  },
+  circle: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    overflow: 'hidden',
+    backgroundColor: '#797979',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 90,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
   },
 });
 

@@ -12,14 +12,14 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
   console.log(req.body)
   try {
-    const { nome, email, senha, sexo, dob, idade, tipoSanguineo, altura, peso } = req.body;
+    const { nome, email, senha, sexo, date, idade, tipoSanguineo, altura, peso } = req.body;
     const hashedPassword = await bcrypt.hash(senha, 10);
     const newUser= await User.create({ 
       nome, 
       email, 
       senha: hashedPassword,
       sexo,
-      data_nascimento: dob,
+      data_nascimento: date,
       idade,
       tipo_sanguineo: tipoSanguineo,
       altura,
@@ -27,8 +27,8 @@ router.post('/register', async (req, res) => {
     });
     res.status(200).json({ message: 'Usuário registrado com sucesso!', newUser });
   } catch (error) {
-    // console.log(error);
-    res.status(500).json({ AxiosError: 'Erro interno do servidor.', error});
+    console.error('Erro ao registrar o usuário:', error); // Adicione isso para logar o erro no console
+    res.status(500).json({ message: 'Erro interno do servidor.', error });
   }
 });
 

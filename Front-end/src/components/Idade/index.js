@@ -3,19 +3,24 @@ import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "reac
 
 const Idade = ({navigation, route}) => {
     const [idade, setIdade] = useState('');
-    const dobString = route.params && route.params.dob ? route.params.dob : '';
-    const {nome, email, senha, sexo} = route.params;
+    const {nome, email, senha, sexo, date} = route.params;
     
 
     const handleNext = () => {
+
+        if (!idade || isNaN(idade)) {
+            alert("Por favor, insira uma idade válida.");
+            return;
+        }
+
         // Here you can send the data to the server, save locally, or perform other actions
         console.log('Nome:', nome);
         console.log('Email:', email);
         console.log('Senha:', senha);
         console.log('Sexo selecionado:', sexo);
-        console.log('Data de Nascimento:', dobString);
+        console.log('Data de Nascimento:', date);
         console.log('Idade:', idade);
-        navigation.navigate('Sangue', { nome, email, senha, sexo, dob: dobString, idade });
+        navigation.navigate('Sangue', { nome, email, senha, sexo, date, idade });
         // Navigate to the next screen or perform other actions
     };
 

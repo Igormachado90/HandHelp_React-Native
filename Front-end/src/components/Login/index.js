@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
     const handleLogin = async () => {
         try {
             // URL de servidor para login
-            const loginUrl = 'http://192.168.0.8:8082/auth/login';
+            const loginUrl = 'http://192.168.0.10:8082/auth/login';
             const response = await axios.post(loginUrl, {
                 email,
                 senha,

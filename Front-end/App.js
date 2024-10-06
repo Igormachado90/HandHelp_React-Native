@@ -27,6 +27,7 @@ import RotinaFim from './src/screens/Rotina/RotinaFim';
 import LocalDorScreen  from './src/screens/Triagem/LocalDorScreen';
 import IntensidadeScreen from './src/screens/Triagem/IntensidadeScreen';
 import ComVozScreen from './src/screens/Triagem/ComVozScreen';
+import TriagemFim from './src/screens/Triagem/TriagemFim';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,7 @@ const App = () => {
         <Stack.Screen name="LocalDor" component={LocalDorScreen} />
         <Stack.Screen name="Intensidade" component={IntensidadeScreen} />
         <Stack.Screen name="Voz" component={ComVozScreen} />
+        <Stack.Screen name="Triagem_Fim" component={TriagemFim} />
       </Stack.Navigator>
     </NavigationContainer>
   );

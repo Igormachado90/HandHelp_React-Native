@@ -6,19 +6,19 @@ const AlturaEpeso = ({ navigation, route }) => {
     const [altura, setAltura] = useState('');
     const [peso, setPeso] = useState('');
 
-    const { nome, email, senha, idade, tipoSanguineo, sexo, dob } = route.params;
+    const { nome, email, senha, idade, tipoSanguineo, sexo, date } = route.params;
 
     const handlNext = async () => {
 
         try {
-            const URL = 'http://192.168.0.8:8082/auth/register';
+            const URL = 'http://192.168.0.10:8082/auth/register';
 
             const dados = {
                 nome,
                 email,
                 senha,
                 sexo,
-                dob, // Data de nascimento no formato ISO
+                date, // Data de nascimento no formato ISO
                 idade,
                 tipoSanguineo,
                 altura,
@@ -32,7 +32,7 @@ const AlturaEpeso = ({ navigation, route }) => {
                 console.log('Resposta do servidor:', resp.status);
                 // Lidar com a resposta do servidor
                 console.log('Dados enviados com sucesso:', resp.config.data);
-                navigation.navigate('Painel', { nome, email, senha, idade, tipoSanguineo, altura, peso });
+                navigation.navigate('Painel', { nome, email, senha, date, idade, tipoSanguineo, altura, peso });
 
             }
         } catch (err) {

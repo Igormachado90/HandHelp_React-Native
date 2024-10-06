@@ -32,7 +32,7 @@ const LocalDorScreen = () => {
         onPress={() => mostrarSintomas(title, symptoms)}
       >
         <View style={styles.painButton}>
-          
+
         </View>
       </TouchableOpacity>
     );
@@ -41,12 +41,19 @@ const LocalDorScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../Triagem/image/Corpo.png')} // Substitua pelo link da imagem correta
+        source={require('../Triagem/assets/image/Corpo.png')} // Substitua pelo link da imagem correta
         style={styles.image}
       />
       {buildPainButton(42, 79, 'Dor no Cabeça!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
       {buildPainButton(68, 54, 'Dor no Ouvido!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
       {buildPainButton(150, 88, 'Dor no Peito!', ['Tosse', 'Falta de ar', 'Chiado no peito'], mostrarSintomas)}
+      {buildPainButton(68, 83.9, 'Dor no Olho!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+      {buildPainButton(150, 295, 'Dor no Costa!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+      {buildPainButton(285, 18, 'Dor no Mão!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+      {buildPainButton(210, 85.5, 'Dor no barrigo!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+      {buildPainButton(210, 290, 'Dor no Coluna!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+      {buildPainButton(410, 260, 'Dor no pantruilho!', ['Symptom 1', 'Symptom 2'], mostrarSintomas)}
+
       <Text style={styles.title}>Local da dor</Text>
 
       <TouchableOpacity

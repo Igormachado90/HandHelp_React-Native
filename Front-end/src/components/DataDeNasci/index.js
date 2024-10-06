@@ -16,20 +16,25 @@ const DataDeNasci = ({ navigation, route }) => {
         console.log('Sexo selecionado:', sexo);
         console.log('Data de Nascimento:', date);
 
-        // Convertendo a data para uma string no formato ISO
-        const dobString = date.toISOString();
 
+        // Convertendo a data para o formato DD/MM/YYYY
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Meses começam do 0 em JavaScript
+        const year = date.getFullYear();
+
+        // Formatando a data no formato DD/MM/YYYY
+        const dobString = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+        
         navigation.navigate('Idade', { nome, email, senha, sexo, date: dobString });
     };
 
     const onDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        // const selectedDateWithoutTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
         setMostar(false);
         setDate(currentDate);
     };
 
-    const showDatepicker = () => {
+    const mostrarDatePicker = () => {
         setMostar(true);
     };
 
@@ -54,7 +59,7 @@ const DataDeNasci = ({ navigation, route }) => {
 
             <Text style={styles.label}>Data de Nascimento</Text>
 
-            <TouchableOpacity onPress={showDatepicker} style={styles.dateInput}>
+            <TouchableOpacity onPress={mostrarDatePicker} style={styles.dateInput}>
                 <Text style={styles.dateText}>{formatDate(date)}</Text>
             </TouchableOpacity>
 

@@ -1,13 +1,19 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Video } from 'expo-av';
 
 const HomeScreen = ({ navigation }) => {
+  const video = require('../screens/Triagem/assets/videos/qual_atendimento_vc_deseja.mp4')
   return (
     <View style={styles.container}>
       <View style={styles.circle}>
-        <Image
-          source={require('../screens/Rotina/image/EmBreve.png')} // URL da sua imagem ou caminho local
-          style={styles.image}
+        <Video
+          source={video} // Recebe o caminho do vídeo
+          style={styles.video}
+          resizeMode="contain"
+          shouldPlay={true}
+          isLooping={true}
+          onError={(error) => console.log('Error loading video:', error)} // Tratamento de erro
         />
       </View>
 
@@ -21,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.buttonTextSecondary}>Rotina</Text>
       </TouchableOpacity>
 
-      
+
 
     </View>
 
@@ -41,15 +47,15 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 150,
     overflow: 'hidden',
-    backgroundColor: '#E5F699',
+    backgroundColor: '#797979',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 90,
   },
-  image: {
+  video: {
     width: '100%',
     height: '100%',
-    resizeMode: 'cover',
+    borderRadius: 20,
   },
   title: {
     fontSize: 25,

@@ -1,51 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Tts from 'react-native-tts';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import * as Speech from 'expo-speech';
+import { Video } from 'expo-av';
 
-const ComVozScreen = ({ route }) => {
-  const { localSelecionados, intensidade } = route.params;
+const ComVozScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { localSelecionados, intensidade } = route.params; // Desestruture apenas uma vez
 
-  const textogerado = `Sintomas: ${localSelecionados.join(', ')}\n\nIntensidade: ${intensidade}`;
+  const textogerado = `Sintomas é ${localSelecionados.join(', ')}.\n\nIntensidade é ${intensidade}`;
 
-  const falarTexto = async (texto) => {
-    try {
-      Tts.setDefaultLanguage('pt-BR');
-      Tts.setDefaultRate(1.0);
-      Tts.setDefaultPitch(1.0);
-      Tts.speak(texto);
-    } catch (error) {
-      console.log('Erro ao falar o texto:', error);
+  const falarTexto = (texto) => {
+    Speech.speak(texto, {
+      language: 'pt-BR',
+      rate: 1.0,
+      pitch: 1.0,
+    });
+  };
 
-    }
-  }
+  const video = require('../Triagem/assets/videos/fala_texto_médico.mp4');
 
   return (
     <View style={styles.container}>
-      {/* Parte superior com "Em breve!" */}
-      <View style={styles.topSection}>
-        <Image
-          source={require('../Rotina/image/EmBreve.png')} // Substitua pelo link da imagem correta
-          style={styles.image}
+      <View style={styles.circle}>
+        <Video
+          source={video} // Recebe o caminho do vídeo
+          style={styles.video}
+          resizeMode="contain"
+          shouldPlay={true}
+          isLooping={true}
+          onError={(error) => console.log('Error loading video:', error)} // Tratamento de erro
         />
       </View>
 
       {/* Área de Texto para Mensagem */}
       <View style={styles.textAreaContainer}>
-
-        <Text >{textogerado}</Text>
+        <Text>{textogerado}</Text>
 
         <TouchableOpacity style={styles.voiceButton} onPress={() => falarTexto(textogerado)}>
           <Text style={styles.voiceButtonText}>🎤 Aperte para Falar</Text>
         </TouchableOpacity>
-
       </View>
 
       {/* Botão "Continua" */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('ProximaTela')} // Substitua 'ProximaTela' pelo nome correto da próxima tela
+        onPress={() => navigation.navigate('Triagem_Fim')} // Substitua 'Triagem_Fim' pelo nome correto da próxima tela
       >
         <Text style={styles.buttonText}>Continua</Text>
       </TouchableOpacity>
@@ -77,17 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
   },
-  topSection: {
-    marginBottom: 30,
-  },
-  circle: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    backgroundColor: '#E0E0E0',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   image: {
     width: 300,
     height: 400,
@@ -101,11 +91,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,
-  },
-  textArea: {
-    height: 100,
-    justifyContent: 'flex-start',
-    color: '#333',
   },
   voiceButton: {
     marginTop: 10,
@@ -122,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b87ac',
     paddingVertical: 15,
     paddingHorizontal: 40,
-    borderRadius: 10,
+    borderRadius: 30,
     marginBottom: 20,
   },
   buttonText: {
@@ -140,6 +125,20 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginHorizontal: 40,
+  },
+  circle: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    overflow: 'hidden',
+    backgroundColor: '#797979',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 90,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
   },
 });
 
